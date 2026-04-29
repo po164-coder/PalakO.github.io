@@ -235,7 +235,7 @@
             </div>
             <div class="profile-img-container">
                 <!-- This references your local Assets folder -->
-                <img src="Assets/ProfilePic.jpeg" alt="Palak Oberoi Profile">
+                <img src="Assets/profilepic.jpeg" alt="Palak Oberoi Profile">
             </div>
         </div>
     </header>
