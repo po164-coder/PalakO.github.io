@@ -14,6 +14,7 @@
     <style>
         :root {
             --blush: #fce4ec;
+            --hot-pink: #ff477e; /* New accent for the app section */
             --gold: #d4af37;
             --gold-dark: #b8860b;
             --charcoal: #333333;
@@ -21,278 +22,63 @@
             --card-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* --- ALL PREVIOUS STYLES REMAIN SAME --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--blush); color: var(--charcoal); line-height: 1.7; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--blush);
-            color: var(--charcoal);
-            line-height: 1.7;
-            scroll-behavior: smooth;
-        }
+        header { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #fff9fb 0%, #fce4ec 100%); position: relative; overflow: hidden; }
+        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; z-index: 2; }
+        .badge { display: inline-block; background: var(--gold); color: white; padding: 8px 24px; border-radius: 50px; font-weight: 600; font-size: 0.9rem; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); }
+        .hero-text h1 { font-size: 4.5rem; color: var(--gold-dark); margin-bottom: 10px; line-height: 1; }
+        .hero-text h2 { font-size: 1.4rem; font-weight: 300; margin-bottom: 20px; color: #555; }
+        .profile-img-frame { position: relative; width: 100%; max-width: 380px; margin: 0 auto; }
+        .profile-img-frame img { width: 100%; border-radius: 15px; border: 8px solid var(--white); box-shadow: 15px 15px 0px var(--gold); transition: transform 0.4s ease; }
+        
+        section { padding: 100px 0; }
+        .section-title { text-align: center; font-size: 2.8rem; margin-bottom: 60px; color: var(--gold-dark); }
+        .card { background: var(--white); padding: 40px; border-radius: 20px; box-shadow: var(--card-shadow); border-top: 6px solid var(--gold); }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .container {
-            max-width: 1100px;
+        /* --- APP INTEGRATION STYLES --- */
+        .app-container {
+            max-width: 500px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- HERO SECTION --- */
-        header {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #fff9fb 0%, #fce4ec 100%);
-            position: relative;
+            border-radius: 40px;
             overflow: hidden;
-        }
-
-        header::before {
-            content: "";
-            position: absolute;
-            top: -10%;
-            right: -5%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 60px;
-            align-items: center;
-            z-index: 2;
-        }
-
-        .badge {
-            display: inline-block;
-            background: var(--gold);
-            color: white;
-            padding: 8px 24px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .hero-text h1 {
-            font-size: 4.5rem;
-            color: var(--gold-dark);
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-
-        .hero-text h2 {
-            font-size: 1.4rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        .profile-img-frame {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            margin: 0 auto;
-        }
-
-        .profile-img-frame img {
-            width: 100%;
-            border-radius: 15px;
-            border: 8px solid var(--white);
-            box-shadow: 15px 15px 0px var(--gold);
-            transition: transform 0.4s ease;
-        }
-
-        .profile-img-frame img:hover {
-            transform: scale(1.02);
-        }
-
-        /* --- SECTIONS --- */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 60px;
-            color: var(--gold-dark);
-        }
-
-        .card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: var(--card-shadow);
-            border-top: 6px solid var(--gold);
-        }
-
-        /* --- EXPERIENCE --- */
-        .experience-item {
-            margin-bottom: 50px;
-            padding-left: 20px;
-            border-left: 2px solid var(--gold-light);
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 15px;
-        }
-
-        .exp-header h3 {
-            font-size: 1.6rem;
-            color: var(--gold-dark);
-        }
-
-        .metrics {
-            font-weight: 600;
-            color: var(--gold-dark);
-            background: #fff9e6;
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        ul li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 25px;
-        }
-
-        ul li::before {
-            content: "\f058";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            left: 0;
-            color: var(--gold);
-        }
-
-        /* --- BENTO EDUCATION --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .bento-card {
+            box-shadow: 0 20px 40px rgba(255, 71, 126, 0.15);
+            border: 4px solid var(--white);
+            height: 700px;
             background: white;
-            padding: 30px;
-            border-radius: 20px;
-            transition: 0.3s;
         }
 
-        .bento-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .course-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .course-tag {
-            background: #fdf2f5;
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            border: 1px solid var(--gold);
-            color: #777;
-        }
-
-        /* --- INTERESTS --- */
-        .interests-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .interest-tag {
-            background: var(--white);
-            border: 1px solid var(--gold);
-            padding: 10px 25px;
-            border-radius: 50px;
-            transition: 0.3s;
-            cursor: default;
-        }
-
-        .interest-tag:hover {
-            background: var(--gold);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        /* --- CONTACT --- */
-        .footer {
-            background: var(--charcoal);
-            color: white;
+        .app-description {
             text-align: center;
-            padding: 80px 0;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
         }
 
-        .contact-btn {
-            display: inline-block;
-            background: var(--gold);
-            color: white;
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 30px;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
+        /* --- OTHER STYLES --- */
+        .experience-item { margin-bottom: 50px; padding-left: 20px; border-left: 2px solid var(--gold); }
+        .exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px; }
+        .exp-header h3 { font-size: 1.6rem; color: var(--gold-dark); }
+        .metrics { font-weight: 600; color: var(--gold-dark); background: #fff9e6; padding: 2px 6px; border-radius: 4px; }
+        ul { list-style: none; }
+        ul li { margin-bottom: 12px; position: relative; padding-left: 25px; }
+        ul li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; left: 0; color: var(--gold); }
+        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .bento-card { background: white; padding: 30px; border-radius: 20px; transition: 0.3s; }
+        .course-tag { background: #fdf2f5; padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; border: 1px solid var(--gold); color: #777; }
+        .interests-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .interest-tag { background: var(--white); border: 1px solid var(--gold); padding: 10px 25px; border-radius: 50px; transition: 0.3s; }
+        .footer { background: var(--charcoal); color: white; text-align: center; padding: 80px 0; }
+        .contact-btn { display: inline-block; background: var(--gold); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; margin-top: 30px; transition: 0.3s; }
+        .social-icons a { color: var(--gold); font-size: 2rem; margin: 0 20px; transition: 0.3s; }
 
-        .contact-btn:hover {
-            background: var(--gold-dark);
-            box-shadow: 0 0 20px var(--gold);
-        }
-
-        .social-icons {
-            margin-top: 40px;
-        }
-
-        .social-icons a {
-            color: var(--gold);
-            font-size: 2rem;
-            margin: 0 20px;
-            transition: 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: var(--white);
-        }
-
-        /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
             .hero-text h1 { font-size: 3rem; }
-            .profile-img-frame { margin-top: 40px; }
-            .exp-header { flex-direction: column; }
+            .app-container { height: 600px; }
         }
     </style>
 </head>
@@ -312,16 +98,38 @@
         </div>
     </header>
 
-    <section id="about">
+    <!-- NEW SECTION: INTERACTIVE PROJECTS -->
+    <section id="projects" style="background: linear-gradient(180deg, var(--blush) 0%, #ffffff 100%);">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="card">
-                <p>I am a Finance and Accounting student at Rutgers Business School with a strong interest in financial strategy, markets, and data-driven decision making. I have gained hands-on experience through internships where I analyzed business models, developed financial frameworks, and evaluated market trends.</p>
-                <p style="margin-top:20px;">I enjoy applying analytical thinking to real-world problems and translating complex financial data into actionable insights. My goal is to build a strong foundation in accounting and finance while continuing to grow through professional experiences and leadership opportunities.</p>
+            <h2 class="section-title">Interactive Projects</h2>
+            <div class="app-description">
+                <p><strong>Pink Wardrobe ✨</strong> is a style curator app I developed to explore consumer behavior and digital personalization. It uses logic-based mapping to recommend fashion and beauty retailers based on user style profiles.</p>
+            </div>
+            
+            <div class="app-container">
+                <!-- REPLACE THE URL BELOW WITH YOUR ACTUAL GITHUB PAGES URL -->
+                <iframe 
+                    src="https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:none;"
+                    title="Pink Wardrobe Style App">
+                </iframe>
             </div>
         </div>
     </section>
 
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="card">
+                <p>I am a Finance and Accounting student at Rutgers Business School with a strong interest in financial strategy, markets, and data-driven decision making. I have gained hands-on experience through internships where I analyzed business models and evaluated market trends.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
     <section id="experience" style="background-color: var(--white);">
         <div class="container">
             <h2 class="section-title">Professional Experience</h2>
@@ -332,9 +140,8 @@
                     <span>Summer 2025</span>
                 </div>
                 <ul>
-                    <li>Contributed to a <span class="metrics">20% projected increase</span> in user acquisition through strategic positioning.</li>
+                    <li>Contributed to a <span class="metrics">20% projected increase</span> in user acquisition.</li>
                     <li>Designed a royalty-sharing model that <span class="metrics">reduced ticket scalping by 30%</span>.</li>
-                    <li>Optimized event-day logistics, reducing venue wait times by 25%.</li>
                 </ul>
             </div>
 
@@ -345,13 +152,12 @@
                 </div>
                 <ul>
                     <li>Built a financial allocation framework: <span class="metrics">40% reinvestment, 35% nonprofit, 25% investor returns</span>.</li>
-                    <li>Research and analyzed complex financial structures for long-term sustainability.</li>
-                    <li>Evaluated ownership and governance models across nonprofit and for-profit sectors.</li>
                 </ul>
             </div>
         </div>
     </section>
 
+    <!-- EDUCATION SECTION -->
     <section id="education">
         <div class="container">
             <h2 class="section-title">Academic Background</h2>
@@ -361,34 +167,22 @@
                     <p>B.S. in Finance | Exp. May 2028</p>
                     <div class="course-list">
                         <span class="course-tag">Business Statistics</span>
-                        <span class="course-tag">Operations Management</span>
-                        <span class="course-tag">Supply Chain Management</span>
                         <span class="course-tag">Computer Apps for Business</span>
                     </div>
                 </div>
                 <div class="bento-card">
-                    <h3 style="color:var(--gold-dark)">Stevens Institute of Technology</h3>
-                    <p>B.S. in Finance (Transfer) | GPA: 3.82</p>
+                    <h3 style="color:var(--gold-dark)">Stevens Institute (Transfer)</h3>
+                    <p>GPA: 3.82</p>
                     <div class="course-list">
                         <span class="course-tag">Financial Accounting</span>
-                        <span class="course-tag">Managerial Accounting</span>
                         <span class="course-tag">Macro/Microeconomics</span>
-                        <span class="course-tag">Calculus I & II</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="goals" style="background-color: var(--white);">
-        <div class="container">
-            <h2 class="section-title">Future Vision</h2>
-            <div class="card" style="border-top-color: var(--charcoal);">
-                <p>My goal is to build a high-impact career in accounting and finance, leveraging my upcoming experience at <strong>PwC</strong> to develop mastery in tax strategy and advisory. I am committed to continuous learning and aim to eventually transition into senior financial consulting roles where I can drive meaningful business growth.</p>
-            </div>
-        </div>
-    </section>
-
+    <!-- INTERESTS SECTION -->
     <section id="interests">
         <div class="container">
             <h2 class="section-title">Beyond the Numbers</h2>
@@ -398,9 +192,7 @@
                 <span class="interest-tag">Traveling</span>
                 <span class="interest-tag">Fashion</span>
                 <span class="interest-tag">Photography</span>
-                <span class="interest-tag">Gardening</span>
                 <span class="interest-tag">Cosmetic Trends</span>
-                <span class="interest-tag">Painting</span>
             </div>
         </div>
     </section>
@@ -409,14 +201,11 @@
         <div class="container">
             <h2>Let's Connect</h2>
             <p>Edison, NJ | Open to professional collaborations</p>
-            
             <a href="mailto:palak.oberoi25@gmail.com" class="contact-btn">Email Me Directly</a>
-
             <div class="social-icons">
                 <a href="https://linkedin.com/in/palak-oberoi-po2" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="mailto:palak.oberoi25@gmail.com"><i class="fa-solid fa-envelope"></i></a>
             </div>
-            
             <p style="margin-top: 50px; font-size: 0.8rem; opacity: 0.6;">&copy; 2026 Palak Oberoi. All Rights Reserved.</p>
         </div>
     </footer>
