@@ -18,133 +18,108 @@
             --gold-dark: #b8860b;
             --charcoal: #1a1a1a;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.85);
+            --glass: rgba(255, 255, 255, 0.9);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Montserrat', sans-serif; 
-            background-color: var(--blush); 
-            color: var(--charcoal); 
-            line-height: 1.6; 
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-        
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--blush); color: var(--charcoal); line-height: 1.6; overflow-x: hidden; scroll-behavior: smooth; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* Animation Keyframes */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Scroll Reveal */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* Hero Section */
-        header { 
-            min-height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            background: linear-gradient(135deg, #fff9fb 0%, #fce4ec 100%);
-            padding: 40px 20px;
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        
+        header { min-height: 100vh; display: flex; align-items: center; background: linear-gradient(135deg, #fff9fb 0%, #fce4ec 100%); }
         .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
-
-        .badge { 
-            display: inline-block; 
-            background: var(--gold); 
-            color: white; 
-            padding: 10px 25px; 
-            border-radius: 50px; 
-            font-weight: 600; 
-            font-size: 0.8rem; 
-            margin-bottom: 25px; 
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
+        .badge { display: inline-block; background: var(--gold); color: white; padding: 10px 25px; border-radius: 50px; font-weight: 600; font-size: 0.8rem; margin-bottom: 25px; letter-spacing: 2px; }
         .hero-text h1 { font-size: clamp(3rem, 7vw, 5rem); color: var(--gold-dark); line-height: 1.1; margin-bottom: 15px; }
-        .hero-text h2 { font-size: 1.4rem; font-weight: 300; margin-bottom: 25px; }
+        .profile-img-frame img { width: 100%; border-radius: 20px; box-shadow: 20px 20px 0px var(--gold); }
 
-        .profile-img-frame img { 
-            width: 100%; 
-            border-radius: 20px; 
-            box-shadow: 20px 20px 0px var(--gold);
-            transition: 0.4s;
+        /* SHOPPING BAG PROJECT SECTION */
+        .shopping-bag-container {
+            position: relative;
+            max-width: 500px;
+            margin: 60px auto;
+            perspective: 1000px;
         }
 
-        /* Section Styling */
-        section { padding: 100px 0; }
-        .section-title { text-align: center; font-size: 3rem; margin-bottom: 60px; color: var(--gold-dark); }
-
-        /* Experience Cards */
-        .card { 
-            background: var(--white); 
-            padding: 40px; 
-            border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
-            margin-bottom: 30px;
-            border-left: 6px solid var(--gold);
-            transition: 0.3s;
+        .shopping-bag {
+            background: var(--white);
+            border: 4px solid var(--gold);
+            border-radius: 10px 10px 30px 30px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            z-index: 2;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 45px rgba(0,0,0,0.08); }
-        .card h3 { font-size: 1.8rem; margin-bottom: 5px; }
-        .card-sub { font-weight: 600; color: #888; margin-bottom: 15px; display: block; }
-        
-        .bullet-list { list-style: none; }
-        .bullet-list li { margin-bottom: 12px; position: relative; padding-left: 25px; font-size: 0.95rem; }
-        .bullet-list li::before { content: "→"; position: absolute; left: 0; color: var(--hot-pink); font-weight: bold; }
 
-        .metrics-pill { background: #fff9e6; color: var(--gold-dark); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+        /* Bag Handles */
+        .shopping-bag::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 60px;
+            border: 4px solid var(--gold);
+            border-bottom: none;
+            border-radius: 60px 60px 0 0;
+        }
 
-        /* Extracurricular Bento Grid */
-        .bento-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
-        .bento-card { background: var(--glass); padding: 30px; border-radius: 20px; border: 1px solid rgba(212,175,55,0.2); }
+        .shopping-bag:hover { transform: translateY(-10px) rotateX(5deg); }
 
-        /* Skills & Awards */
-        .tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .tag { background: var(--gold); color: white; padding: 6px 15px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
-        .award-tag { background: var(--charcoal); color: white; padding: 6px 15px; border-radius: 50px; font-size: 0.8rem; }
-
-        /* App Viewer */
-        .app-section { background: white; text-align: center; }
-        .app-viewer {
-            max-width: 400px;
-            margin: 40px auto;
-            border: 12px solid #333;
-            border-radius: 45px;
-            height: 750px;
+        .app-frame {
+            width: 100%;
+            height: 650px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            border: 1px solid #eee;
+            background: #fff;
         }
+
+        /* Confetti Animation */
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--hot-pink);
+            top: 0;
+            opacity: 0;
+        }
+
+        .shopping-bag:hover .confetti-piece {
+            animation: blow-confetti 2s ease-out forwards;
+        }
+
+        @keyframes blow-confetti {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) rotate(720deg); opacity: 0; }
+        }
+
+        /* Professional Cards */
+        .card { background: var(--white); padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); margin-bottom: 30px; border-left: 6px solid var(--gold); }
+        .metrics-pill { background: #fff9e6; color: var(--gold-dark); padding: 2px 8px; border-radius: 4px; font-weight: 600; }
 
         footer { background: var(--charcoal); color: white; padding: 80px 0; text-align: center; }
         .footer-link { color: var(--gold); text-decoration: none; font-weight: 600; font-size: 1.5rem; margin: 0 15px; }
 
-        @media (max-width: 850px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .profile-img-frame { max-width: 350px; margin: 40px auto 0; }
-        }
+        @media (max-width: 850px) { .hero-grid { grid-template-columns: 1fr; text-align: center; } .profile-img-frame { max-width: 350px; margin: 40px auto 0; } }
     </style>
 </head>
 <body>
 
 <header>
     <div class="container hero-grid">
-        <div class="hero-text animate__animated animate__fadeIn">
+        <div class="hero-text">
             <span class="badge">Incoming Tax Intern @ PwC</span>
             <h1>Palak Oberoi</h1>
             <h2>Finance Scholar at <strong>Rutgers Business School</strong></h2>
-            <p style="margin-bottom: 20px;"><i class="fa-solid fa-location-dot"></i> Edison, NJ | Bloomberg Terminal Certified</p>
-            <div style="display: flex; gap: 15px;">
-                <a href="mailto:palak.oberoi25@gmail.com" class="footer-link" style="font-size: 1.2rem;"><i class="fa-solid fa-envelope"></i> Email</a>
-                <a href="https://linkedin.com/in/palak-oberoi-po2" class="footer-link" style="font-size: 1.2rem;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-            </div>
+            <p><i class="fa-solid fa-location-dot"></i> Edison, NJ | Bloomberg Terminal Certified</p>
         </div>
         <div class="profile-img-frame">
             <img src="Assets/profilepic.jpeg" alt="Palak Oberoi">
@@ -154,126 +129,101 @@
 
 <section id="experience" class="reveal">
     <div class="container">
-        <h2 class="section-title">Professional Experience</h2>
+        <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Professional Impact</h2>
         
-        <!-- Toutix -->
         <div class="card">
             <h3>Business Strategy Intern | Toutix</h3>
-            <span class="card-sub">New York City, NY • Jun 2025 – Aug 2025</span>
-            <ul class="bullet-list">
-                <li>Drove a <span class="metrics-pill">20% projected increase</span> in user acquisition via targeted pricing and competitive benchmarking.</li>
-                <li>Architected a royalty-sharing model that reduced ticket scalping by <span class="metrics-pill">30%</span> through ownership tracking.</li>
-                <li>Optimized logistics for 20,000+ attendee venues, slashing entry wait times by <span class="metrics-pill">25%</span>.</li>
-            </ul>
+            <p>Drove a <span class="metrics-pill">20% projected increase</span> in user acquisition via targeted pricing. Architected a royalty-sharing model that reduced ticket scalping by <span class="metrics-pill">30%</span>.</p>
         </div>
 
-        <!-- WGI -->
         <div class="card">
             <h3>Finance Intern | WGI</h3>
-            <span class="card-sub">New York City, NY • Dec 2024 – Mar 2025[cite: 1]</span>
-            <ul class="bullet-list">
-                <li>Analyzed dual-entity financial models (OpenAI case study) to define nonprofit vs. for-profit synergy.[cite: 1]</li>
-                <li>Mapped governance and profit distribution to align financial sustainability with organizational mission.[cite: 1]</li>
-                <li>Drafted a 5-year framework with a <span class="metrics-pill">40/35/25</span> allocation for reinvestment, funding, and returns.[cite: 1]</li>
-            </ul>
+            <p>Analyzed dual-entity financial structures (OpenAI case study) and drafted a 5-year framework with a <span class="metrics-pill">40/35/25</span> profit allocation reinvestment model.</p>
         </div>
     </div>
 </section>
 
-<section id="extracurriculars" style="background: #fff9fb;" class="reveal">
+<!-- DRAMATIC PROJECT SECTION -->
+<section id="project-section" style="background-color: white;">
     <div class="container">
-        <h2 class="section-title">Insights & Analysis</h2>
-        <div class="bento-grid">
-            <!-- Goldman Sachs -->
-            <div class="bento-card">
-                <h3 style="color:var(--gold-dark)">Goldman Sachs Insight Scholar[cite: 1]</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 15px;"><em>Virtual Series • Jun 2025 – Jul 2025</em></p>
-                <p>Selected for a competitive program covering Investment Banking, Global Markets, and Asset Management.[cite: 1] Synthesized 3-5 strategic recommendations for complex business case scenarios.[cite: 1]</p>
-            </div>
+        <h2 class="section-title" style="text-align: center;">The Pink Wardrobe ✨</h2>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 40px;">Hover over the bag to celebrate and interact with the app!</p>
 
-            <!-- Google Stock Pitch -->
-            <div class="bento-card">
-                <h3 style="color:var(--gold-dark)">Google Stock Pitch Analyst[cite: 1]</h3>
-                <p style="font-size: 0.85rem; margin-bottom: 15px;"><em>Quantitative Research • Dec 2024</em></p>
-                <p>Analyzed Alphabet's <span class="metrics-pill">3.7x revenue growth</span> ($90B to $332B).[cite: 1] Modeled Google Cloud's profitability inflection, projecting <span class="metrics-pill">$9.6B</span> operating income by 2025.[cite: 1]</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="interactive" class="app-section reveal">
-    <div class="container">
-        <h2 class="section-title">Digital Innovation</h2>
-        <p>Interactive User Engagement Quiz — Demonstration of logic-mapping and digital strategy.[cite: 1]</p>
-        <div class="app-viewer">
-            <iframe src="https://po164-coder.github.io/Project/" title="Palak Oberoi Quiz App"></iframe>
-        </div>
-    </div>
-</section>
-
-<section id="education" style="background: white;" class="reveal">
-    <div class="container">
-        <h2 class="section-title">Education & Honors</h2>
-        <div class="bento-grid">
-            <div class="bento-card">
-                <h3 style="color:var(--gold-dark)">Rutgers Business School[cite: 1]</h3>
-                <p>B.S. in Finance • Exp. May 2028[cite: 1]</p>
-                <div class="tags">
-                    <span class="tag">Business Statistics</span>
-                    <span class="tag">Operations Mgmt</span>
-                    <span class="tag">Supply Chain</span>
-                </div>
-            </div>
-            <div class="bento-card">
-                <h3 style="color:var(--gold-dark)">Stevens Institute (Transfer)[cite: 1]</h3>
-                <p>GPA: 3.82 (Major)[cite: 1]</p>
-                <div class="tags">
-                    <span class="tag">Financial Accounting</span>
-                    <span class="tag">Calculus I & II</span>
-                    <span class="tag">Macroeconomics</span>
+        <div class="shopping-bag-container">
+            <div class="shopping-bag" id="bag">
+                <!-- Confetti particles generated by JS -->
+                <div id="confetti-container"></div>
+                
+                <div class="app-frame">
+                    <iframe src="https://po164-coder.github.io/Project/" width="100%" height="100%" style="border:none;"></iframe>
                 </div>
             </div>
         </div>
 
-        <div style="margin-top: 40px; text-align: center;">
-            <h3 style="margin-bottom: 20px;">Honors & Skills[cite: 1]</h3>
-            <div class="tags" style="justify-content: center;">
-                <span class="award-tag">National Honor Society</span>
-                <span class="award-tag">Rho Kappa</span>
-                <span class="award-tag">Mu Alpha Theta</span>
-                <span class="award-tag">Dean's List x2</span>
-            </div>
-            <div class="tags" style="justify-content: center; margin-top: 10px;">
-                <span class="tag">Python</span>
-                <span class="tag">R</span>
-                <span class="tag">Bloomberg Certified</span>
-                <span class="tag">MS Office</span>
-            </div>
+        <div style="text-align: center;">
+            <a href="https://po164-coder.github.io/Project/" target="_blank" style="color: var(--hot-pink); font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--hot-pink);">
+                Open App in Full Screen <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="insights" class="reveal">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Insights & Analysis</h2>
+        <div class="card" style="border-left-color: var(--hot-pink);">
+            <h3>Goldman Sachs Insight Scholar</h3>
+            <p>Selected for the Virtual Insight Series covering Investment Banking and Asset Management. Synthesized strategic recommendations for high-level business case studies.</p>
+        </div>
+        <div class="card" style="border-left-color: var(--hot-pink);">
+            <h3>Google Stock Pitch Analyst</h3>
+            <p>Conducted fundamental analysis of Alphabet's <span class="metrics-pill">3.7x revenue growth</span>. Projected Google Cloud operating income of <span class="metrics-pill">$9.6B</span> for 2025.</p>
         </div>
     </div>
 </section>
 
 <footer>
     <div class="container">
-        <h2>Connect for Summer 2027</h2>
-        <p style="margin: 20px 0 40px; opacity: 0.8;">Seeking opportunities in Tax, Finance, and Strategic Operations.</p>
-        <a href="mailto:palak.oberoi25@gmail.com" class="footer-link"><i class="fa-solid fa-envelope"></i></a>
-        <a href="https://linkedin.com/in/palak-oberoi-po2" target="_blank" class="footer-link"><i class="fa-brands fa-linkedin"></i></a>
-        <p style="margin-top: 60px; font-size: 0.75rem; opacity: 0.4;">&copy; 2026 Palak Oberoi. All information sourced from professional CV.[cite: 1]</p>
+        <h2>Let's Connect</h2>
+        <div style="margin: 30px 0;">
+            <a href="mailto:palak.oberoi25@gmail.com" class="footer-link">Email</a>
+            <a href="https://linkedin.com/in/palak-oberoi-po2" target="_blank" class="footer-link">LinkedIn</a>
+        </div>
+        <p style="opacity: 0.5; font-size: 0.8rem;">&copy; 2026 Palak Oberoi | Rutgers University</p>
     </div>
 </footer>
 
 <script>
-    // Scroll reveal logic
+    // Scroll Reveal
     window.addEventListener('scroll', () => {
         const reveals = document.querySelectorAll('.reveal');
         reveals.forEach(el => {
-            const windowHeight = window.innerHeight;
-            const revealTop = el.getBoundingClientRect().top;
-            if (revealTop < windowHeight - 100) {
-                el.classList.add('active');
-            }
+            if (el.getBoundingClientRect().top < window.innerHeight - 100) el.classList.add('active');
         });
+    });
+
+    // Create Confetti
+    const bag = document.getElementById('bag');
+    const confettiContainer = document.getElementById('confetti-container');
+    const colors = ['#ff477e', '#d4af37', '#f8bbd0', '#ffffff'];
+
+    bag.addEventListener('mouseenter', () => {
+        confettiContainer.innerHTML = '';
+        for (let i = 0; i < 50; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'confetti-piece';
+            piece.style.left = '50%';
+            piece.style.top = '20%';
+            piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Random blast direction
+            const x = (Math.random() - 0.5) * 600 + 'px';
+            const y = (Math.random() - 1) * 400 + 'px';
+            piece.style.setProperty('--x', x);
+            piece.style.setProperty('--y', y);
+            
+            confettiContainer.appendChild(piece);
+        }
     });
 </script>
 
